@@ -7,6 +7,9 @@ function getComputerChoice() {
 let computerChoice = choices.at(getComputerChoice() - 1);
 let playerChoice = choices.at(prompt('1. Rock? \n2. Paper? \n3. Scissors?') -1);
 
+let computerScore = 0;
+let playerScore = 0;
+
 if (computerChoice === choices[0] && (playerChoice) === choices[0]) {
     alert("Your Rock against their Rock, you draw...");
 } else if (computerChoice === choices[0] && (playerChoice) === choices[1]) {
