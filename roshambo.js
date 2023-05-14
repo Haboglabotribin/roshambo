@@ -7,9 +7,37 @@ function getComputerChoice() {
 let computerScore = 0;
 let playerScore = 0;
 let gameScore = 0;
+playerChoice = null
 
-while (gameScore < 5) {
-    let playerChoice = choices.at(prompt('1. Rock? \n2. Paper? \n3. Scissors?') -1);
+
+const posSelect = document.querySelectorAll('.posSelect');
+
+// cannot return playerChoice with choices value from functions... 
+function retrieveSelect(){
+    posSelect.forEach((posSelect)=>{
+        posSelect.addEventListener("click", (e) =>{
+            if (posSelect.querySelector('.Rock') !== null) {
+                console.log("rock");
+                let playerChoice = choices.at(0)
+                console.log(playerChoice)
+            } else if (posSelect.querySelector('.Paper') !== null) {
+                console.log("paper");
+                let playerChoice = choices.at(1)
+                return playerChoice;
+            } else if (posSelect.querySelector('.Scissors') !== null) {
+                console.log("scissors");
+                let playerChoice = choices.at(2)
+                return playerChoice;
+            }
+        console.log(playerChoice);
+        return playerChoice;
+        });
+    });
+}
+
+
+function turn(){
+    retrieveSelect();
     let computerChoice = choices.at(getComputerChoice() - 1);
     if (computerChoice === choices[0] && (playerChoice) === choices[0]) {
         alert("Your Rock against their Rock, you draw... ");
@@ -49,10 +77,5 @@ while (gameScore < 5) {
     }
 }
 
-if (playerScore > computerScore){
-    alert("You Win!")
-} else if (computerScore > playerScore){
-    alert ("You Lose!")
-} else {
-    alert ("It's a Draw!")
-}
+turn()
+console.log(playerChoice)

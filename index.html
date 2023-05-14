@@ -3,10 +3,47 @@
 <head>
     <meta charset="utf-8">
     <title>Rock - Paper - Scissors</title>
+    <script src="./roshambo.js" defer></script>
+    <link href="./styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <script src="./roshambo.js"></script>
+   <header>
+        <h1>Welcome to Roshambo!</h1>
+        <div class="subheading">You know how to play. This one's best of 5.</div>
+   </header>    
+
+   <div class="selectionContainer">
+        <button class="posSelect">
+            <img class="Rock" src="/home/jake/Repos/roshambo/images/rock.jpg" alt="Rock">
+        </button>
+
+        <button class="posSelect">
+            <img class="Paper" src="/home/jake/Repos/roshambo/images/paper.jpeg" alt="Paper">
+        </button>
+
+        <button class="posSelect">
+            <img class="Scissors" src="/home/jake/Repos/roshambo/images/scissors.jpg" alt="Scissors">
+        </button>
+    </div>
+
+    <div class="scoreboard">
+        <div class="playerScore">
+            Your Score:
+            <div class="pScoreFluid">
+
+            </div>
+        </div>
+
+        <div class="computerScore">
+            Computer Score:
+            <div class="cScoreFluid">
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
 
 </html>
