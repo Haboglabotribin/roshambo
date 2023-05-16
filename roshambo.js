@@ -1,81 +1,86 @@
 const choices = [('Rock'), ('Paper'), ('Scissors')];
 
 function getComputerChoice() {
-    return Math.floor(Math.random() * choices.length) + 1;
+    x = Math.floor(Math.random() * choices.length);
+    return choices.at(x)
 }
+
 
 let computerScore = 0;
 let playerScore = 0;
 let gameScore = 0;
-playerChoice = null
+let playerChoice = null;
+let computerChoice = null;
 
 
-const posSelect = document.querySelectorAll('.posSelect');
 
-// cannot return playerChoice with choices value from functions... 
-function retrieveSelect(){
+function standings() {
+    
+}
+
+
+function appendScores() {
+    const pScoreFluid = document.querySelector(".pScoreFluid");
+    pScoreFluid.innerHTML = playerScore;
+    const cScoreFluid = document.querySelector(".cScoreFluid");
+    cScoreFluid.innerHTML = computerScore;
+    const gameTotal = document.querySelector(".gameTotal");
+    gameTotal.innerHTML = gameScore;
+}
+
+
+
+function battle() {
+    if (playerChoice === 'Rock' && computerChoice === 'Paper'){
+        computerScore = computerScore +1; gameScore = gameScore +1;
+    } else if (playerChoice === 'Rock' && computerChoice === 'Rock'){
+        gameScore = gameScore +1;
+    } else if (playerChoice === 'Rock' && computerChoice === 'Scissors'){
+        playerScore = playerScore +1; gameScore = gameScore +1;
+    } else if (playerChoice === 'Paper' && computerChoice === 'Paper'){
+        gameScore = gameScore +1;
+    } else if (playerChoice === 'Paper' && computerChoice === 'Rock'){
+        playerScore = playerScore +1; gameScore = gameScore +1;
+    } else if (playerChoice === 'Paper' && computerChoice === 'Scissors'){
+        computerScore = computerScore +1; gameScore = gameScore +1;
+    } else if (playerChoice === 'Scissors' && computerChoice === 'Paper'){
+        playerScore = playerScore +1; gameScore = gameScore +1;
+    } else if (playerChoice === 'Scissors' && computerChoice === 'Rock'){
+        computerScore = computerScore +1; gameScore = gameScore +1;
+    } else if (playerChoice === 'Scissors' && computerChoice === 'Scissors'){
+        gameScore = gameScore +1;
+    } else {
+        alert ("someting wong")
+    }
+    console.log(gameScore, playerScore, computerScore)
+    appendScores()
+}
+
+
+function game() {
+    const posSelect = document.querySelectorAll('.posSelect');
     posSelect.forEach((posSelect)=>{
-        posSelect.addEventListener("click", (e) =>{
-            if (posSelect.querySelector('.Rock') !== null) {
-                console.log("rock");
-                let playerChoice = choices.at(0)
-                console.log(playerChoice)
-            } else if (posSelect.querySelector('.Paper') !== null) {
-                console.log("paper");
-                let playerChoice = choices.at(1)
-                return playerChoice;
-            } else if (posSelect.querySelector('.Scissors') !== null) {
-                console.log("scissors");
-                let playerChoice = choices.at(2)
-                return playerChoice;
+        posSelect.addEventListener("click", () => {
+            if (posSelect.querySelector('.Rock') !== null){
+                playerChoice = choices.at(0);
+                computerChoice = getComputerChoice();
+                battle();
+            } else if (posSelect.querySelector('.Paper') !== null){
+                playerChoice = choices.at(1);
+                computerChoice = getComputerChoice();
+                battle();
+            } else if (posSelect.querySelector('.Scissors') !== null){
+                playerChoice = choices.at(2);
+                computerChoice = getComputerChoice();
+                battle();
             }
-        console.log(playerChoice);
-        return playerChoice;
         });
     });
 }
 
 
-function turn(){
-    retrieveSelect();
-    let computerChoice = choices.at(getComputerChoice() - 1);
-    if (computerChoice === choices[0] && (playerChoice) === choices[0]) {
-        alert("Your Rock against their Rock, you draw... ");
-        gameScore = gameScore += 1;
-    } else if (computerChoice === choices[0] && (playerChoice) === choices[1]) {
-        alert("Your Paper against their Rock, you win! ");
-        gameScore = gameScore += 1;
-        playerScore = playerScore += 1;
-    } else if (computerChoice === choices[0] && (playerChoice) === choices[2]) {
-        alert("Your Scissors against their Rock, you lose! ");
-        gameScore = gameScore += 1;
-        computerScore = computerScore +=1
-    } else if (computerChoice === choices[1] && (playerChoice) === choices[0]) {
-        alert("Your Rock against their Paper, you lose! ");
-        gameScore = gameScore += 1;
-        computerScore = computerScore +=1
-    } else if (computerChoice === choices[1] && (playerChoice) === choices[1]) {
-        alert("Your Paper against their Paper, you draw... ");
-        gameScore = gameScore += 1;
-    } else if (computerChoice === choices[1] && (playerChoice) === choices[2]) {
-        alert("Your Scissors against their Paper, you win! ");
-        gameScore = gameScore += 1;
-        playerScore = playerScore += 1;
-    } else if (computerChoice === choices[2] && (playerChoice) === choices[0]) {
-        alert("Your Rock against their Scissors, you win! ");
-        gameScore = gameScore += 1;
-        playerScore = playerScore += 1;
-    } else if (computerChoice === choices[2] && (playerChoice) === choices[1]) {
-        alert("Your Paper against their Scissors, you lose! ");
-        gameScore = gameScore += 1;
-        computerScore = computerScore +=1
-    } else if (computerChoice === choices[2] && (playerChoice) === choices[2]) {
-        alert("Your Scissors against their Scissors, you draw... ");
-        gameScore = gameScore += 1;
-    } else {
-        alert("Something's fucked up. Input 1, 2, or 3. ")
-    }
-}
 
-turn()
-console.log(playerChoice)
+
+if (gameScore < 5){
+game()
+}

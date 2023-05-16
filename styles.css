@@ -4,6 +4,18 @@ header {
     align-items: center;  
 }
 
+.totalCont {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.gameTotal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 img {
     max-height: 240px;
     max-width: auto;
